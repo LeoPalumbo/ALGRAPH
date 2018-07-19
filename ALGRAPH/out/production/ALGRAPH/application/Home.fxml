@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="1022.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algraph.controller.HomeController">
+    <top>
+        <MenuBar prefWidth="905.0" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#handleMenuItem_OpenFile" text="Apri.." />
+                        <MenuItem fx:id="save" mnemonicParsing="false" onAction="#handleMenuItem_Save" text="Salva" />
+                        <MenuItem fx:id="randomGraph" mnemonicParsing="false" onAction="#handleMenuItem_RandomGraph" text="Grafo Casuale" />
+                        <Menu mnemonicParsing="false" text="Crea Grafo..">
+                            <items>
+                                <MenuItem fx:id="graphNoEdge" mnemonicParsing="false" onAction="#handleMenuItem_NodesGraph" text="Numero di nodi">
+                                    <graphic>
+                                        <TextField fx:id="n_nodi" promptText="Max node: 20" />
+                                    </graphic>
+                                </MenuItem>
+                            </items>
+                        </Menu>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleMenuItem_Close" text="Chiudi" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Modifica">
+                    <items>
+                  <MenuItem fx:id="insertNode" mnemonicParsing="false" onAction="#handleMenuItem_InsertNode" text="Inserisci Nodo" />
+                        <Menu mnemonicParsing="false" text="Cancella Nodo">
+                     <items>
+                        <MenuItem fx:id="deleteNode" mnemonicParsing="false" onAction="#handleMenuDeleteNode">
+                           <graphic>
+                              <ComboBox fx:id="deleteComboBox" prefWidth="150.0" promptText="Cancella Nodo" />
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                        </Menu>
+                  <Menu fx:id="createEdge" mnemonicParsing="false" onAction="#handleMenuItem_InsertEdge" text="Crea arco">
+                     <items>
+                        <MenuItem mnemonicParsing="false">
+                           <graphic>
+                              <ComboBox fx:id="edgeCBoxOne" promptText="Inserisci Nodo Uno" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false">
+                           <graphic>
+                              <ComboBox fx:id="edgeCBoxTwo" promptText="Inserisci Nodo Due" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false">
+                           <graphic>
+                              <TextField fx:id="peso" promptText="Peso" />
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" onAction="#handleMenuItem_DeleteEdge" text="Cancella arco">
+                     <items>
+                        <MenuItem fx:id="deleteEdge1" mnemonicParsing="false">
+                           <graphic>
+                              <ComboBox fx:id="edgeDBox1" promptText="Inserisci Nodo Uno" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="deleteEdge2" mnemonicParsing="false">
+                           <graphic>
+                              <ComboBox fx:id="edgeDBox2" promptText="Inserisci Nodo Due" />
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                  </Menu>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Animazione">
+                    <items>
+                        <Menu mnemonicParsing="false" text="Avvia..">
+                            <items>
+                        <Menu mnemonicParsing="false" text="Avvia">
+                           <items>
+                              <MenuItem fx:id="startAnimAll" mnemonicParsing="false">
+                                 <graphic>
+                                    <ComboBox fx:id="startComboBox1" onAction="#handleMenuItem_RunAnimation" prefWidth="150.0" promptText="Inserisci Nodo" />
+                                 </graphic>
+                              </MenuItem>
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Animazione">
+                           <items>
+                              <MenuItem fx:id="startAnimStep" mnemonicParsing="false">
+                                 <graphic>
+                                    <ComboBox fx:id="startComboBox3" onAction="#handleMenuItem_RunAnimation" prefWidth="150.0" promptText="Inserisci Nodo" />
+                                 </graphic>
+                              </MenuItem>
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Passo Passo">
+                           <items>
+                              <MenuItem fx:id="startStep" mnemonicParsing="false">
+                                 <graphic>
+                                    <ComboBox fx:id="stepComboBox2" onAction="#handleMenuItem_NextStep" prefWidth="150.0" promptText="Inserisci Nodo" />
+                                 </graphic>
+                              </MenuItem>
+                           </items>
+                        </Menu>
+                            </items>
+                        </Menu>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Informazioni">
+               <items>
+                  <MenuItem fx:id="info" mnemonicParsing="false" onAction="#handleMenuItem_About" text="Info" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="Next Step">
+               <items>
+                  <MenuItem fx:id="nextStep" mnemonicParsing="false" onAction="#handleMenuItem_NextStep" text="Next Step" />
+               </items>
+            </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.6869854958839671" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <SplitPane dividerPositions="0.7517899761336516" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                            <children>
+                                <Pane fx:id="graphPane" onMouseClicked="#handleButtonClick_GraphPane" onMouseMoved="#handleMouseMove_GraphPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="800.0">
+                            <children>
+                                <TextArea fx:id="outputTextArea" editable="false" prefHeight="164.0" prefWidth="350.0" text="PseudoCode panel" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </TextArea>
+                                <TextArea fx:id="outputTextArea1" editable="false" layoutX="302.0" prefHeight="250.0" prefWidth="397.0" text="Matrice di adiacenza" wrapText="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </TextArea>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+                <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="502.0">
+                            <children>
+                                <ScrollPane fx:id="scrollPaneVisited" hbarPolicy="NEVER" layoutX="20.0" layoutY="66.0" onMouseDragEntered="#handleButtonClick_GraphPane" prefHeight="375.0" prefWidth="127.0" AnchorPane.bottomAnchor="233.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="66.0">
+                                    <content>
+                                        <VBox fx:id="vBoxVisited" prefHeight="0.0" prefWidth="100.0" />
+                                    </content>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </ScrollPane>
+                                <ScrollPane fx:id="scrollPaneParents" hbarPolicy="NEVER" layoutX="465.0" layoutY="66.0" prefHeight="375.0" prefWidth="127.0" AnchorPane.bottomAnchor="230.0" AnchorPane.rightAnchor="17.399999999999977" AnchorPane.topAnchor="66.0">
+                                    <content>
+                                        <VBox fx:id="vBoxParents" prefHeight="0.0" prefWidth="98.0" />
+                                    </content>
+                                </ScrollPane>
+                                <Text layoutX="25.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NODI VISITATI" textAlignment="CENTER" wrappingWidth="107.21875" AnchorPane.leftAnchor="25.0">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font></Text>
+                                <Text layoutX="456.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VETTORE DELLE PRIORITÁ" textAlignment="CENTER" wrappingWidth="148.0186767578125" AnchorPane.rightAnchor="5.581323242187523">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font></Text>
+                            </children></AnchorPane>
+                    </items>
+                </SplitPane>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>
